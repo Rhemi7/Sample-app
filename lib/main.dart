@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sample_app/features/user_feature/presentation/dashboard.dart';
-import 'features/user_feature/presentation/home_screen.dart';
+import 'package:sample_app/features/user_feature/presentation/screens/add_item_screen.dart';
+import 'package:sample_app/features/user_feature/presentation/screens/dashboard.dart';
+import 'package:sample_app/features/user_feature/presentation/screens/item_screen.dart';
+import 'package:sample_app/features/user_feature/presentation/screens/sign_up_screen.dart';
+import 'features/user_feature/presentation/app_router.dart';
+import 'features/user_feature/presentation/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp(),));
+  runApp( ProviderScope(child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  final AppRouter _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
@@ -21,7 +26,8 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         primarySwatch: Colors.blue,
       ),
-      home: const Dashboard(),
+      onGenerateRoute: _appRouter.onGenerateRoute,
+      home: const SignUpScreen(),
     );
   }
 }
