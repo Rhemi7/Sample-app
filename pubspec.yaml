@@ -55,8 +55,8 @@ dev_dependencies:
   mockito: ^5.0.9
   #  Dartz is used for functional programming
   dartz: ^0.10.0
-  #  Data connection checker is used to check data connection on device
-#  data_connection_checker: ^0.3.4
+  #  Shared preferences for local staorage
+  shared_preferences: ^2.0.15
   #  Riverpod is used for state management
   hooks_riverpod: ^1.0.4
   build_runner: ^2.2.0
