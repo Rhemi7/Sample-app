@@ -56,9 +56,10 @@ dev_dependencies:
   #  Dartz is used for functional programming
   dartz: ^0.10.0
   #  Data connection checker is used to check data connection on device
-  data_connection_checker: ^0.3.4
+#  data_connection_checker: ^0.3.4
   #  Riverpod is used for state management
   hooks_riverpod: ^1.0.4
+  build_runner: ^2.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
