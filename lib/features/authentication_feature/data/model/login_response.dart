@@ -7,6 +7,8 @@ import 'dart:convert';
 
 import 'package:sample_app/features/authentication_feature/domain/entity/registration_entity.dart';
 
+import '../../domain/entity/login_entity.dart';
+
 LoginResponse loginResponseFromJson(String str) => LoginResponse.fromJson(json.decode(str));
 
 String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());

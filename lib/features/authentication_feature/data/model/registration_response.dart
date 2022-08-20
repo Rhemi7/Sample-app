@@ -4,13 +4,15 @@
 
 import 'dart:convert';
 
+import 'package:sample_app/features/authentication_feature/domain/entity/registration_entity.dart';
+
 RegistrationResponse registrationResponseFromJson(String str) => RegistrationResponse.fromJson(json.decode(str));
 
 String registrationResponseToJson(RegistrationResponse data) => json.encode(data.toJson());
 
-class RegistrationResponse {
+// ignore: must_be_immutable
+class RegistrationResponse extends RegistrationEntity{
   RegistrationResponse({
-    this.kind,
     this.idToken,
     this.email,
     this.refreshToken,
@@ -18,7 +20,6 @@ class RegistrationResponse {
     this.localId,
   });
 
-  String? kind;
   String? idToken;
   String? email;
   String? refreshToken;
@@ -26,7 +27,7 @@ class RegistrationResponse {
   String? localId;
 
   factory RegistrationResponse.fromJson(Map<String, dynamic> json) => RegistrationResponse(
-    kind: json["kind"],
+    // kind: json["kind"],
     idToken: json["idToken"],
     email: json["email"],
     refreshToken: json["refreshToken"],
@@ -35,7 +36,7 @@ class RegistrationResponse {
   );
 
   Map<String, dynamic> toJson() => {
-    "kind": kind,
+    // "kind": kind,
     "idToken": idToken,
     "email": email,
     "refreshToken": refreshToken,
