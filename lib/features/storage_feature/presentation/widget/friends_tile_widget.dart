@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/constants.dart';
+import '../../../user_feature/presentation/utils/constants.dart';
 
 class FriendsTileWidget extends StatelessWidget {
   final String firstName;

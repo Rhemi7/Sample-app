@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils/constants.dart';
-import '../utils/margins.dart';
+import '../../../user_feature/presentation/utils/constants.dart';
+import '../../../user_feature/presentation/utils/margins.dart';
 import '../widget/app_primary_button.dart';
 
 class ItemScreen extends StatefulWidget {
@@ -78,7 +77,6 @@ class _ItemScreenState extends State<ItemScreen> {
                 YMargin(10),
               ],
             )),
-            // Spacer(),
             PrimaryButton(
               text: "Edit",
               onPressed: () {

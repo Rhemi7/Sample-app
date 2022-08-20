@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/margins.dart';
-import 'package:sample_app/features/user_feature/presentation/widget/app_primary_button.dart';
-
+import '../widget/app_primary_button.dart';
 import '../widget/app_text_field.dart';
 
 class AddItemScreen extends StatefulWidget {

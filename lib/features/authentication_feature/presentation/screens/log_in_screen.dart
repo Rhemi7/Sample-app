@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/dashboard.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
+import '../../../storage_feature/presentation/widget/app_primary_button.dart';
+import '../../../storage_feature/presentation/widget/app_text_field.dart';
+import '../../../user_feature/presentation/utils/margins.dart';
 
-import '../utils/margins.dart';
-import '../widget/app_primary_button.dart';
-import '../widget/app_text_field.dart';
-
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils/constants.dart';
-import '../utils/margins.dart';
+import '../../../user_feature/presentation/utils/constants.dart';
+import '../../../user_feature/presentation/utils/margins.dart';
 import '../widget/app_primary_button.dart';
 import 'add_item_screen.dart';
 
@@ -101,7 +100,6 @@ class _EditItemScreenState extends State<EditItemScreen> {
                     const YMargin(10),
                   ],
                 )),
-            // Spacer(),
             PrimaryButton(
               text: "Save",
               onPressed: () {

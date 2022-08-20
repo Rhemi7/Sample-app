@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/profile_screen.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/profile_screen.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 
 import 'home_screen.dart';

@@ -3,6 +3,7 @@ import 'package:sample_app/features/user_feature/presentation/utils/constants.da
 
 import '../widget/friends_tile_widget.dart';
 
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

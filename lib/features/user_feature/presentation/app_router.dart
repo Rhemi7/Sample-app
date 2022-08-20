@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/add_item_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/dashboard.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/edit_item_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/home_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/item_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/log_in_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/screens/sign_up_screen.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/add_item_screen.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/dashboard.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/edit_item_screen.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/home_screen.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/item_screen.dart';
+import 'package:sample_app/features/authentication_feature/presentation/screens/log_in_screen.dart';
+import 'package:sample_app/features/authentication_feature/presentation/screens/sign_up_screen.dart';
 import 'package:sample_app/features/user_feature/presentation/splash_screen.dart';
 
 class AppRouter {

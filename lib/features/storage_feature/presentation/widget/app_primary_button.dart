@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 
-import '../utils/resolution.dart';
+import '../../../user_feature/presentation/utils/resolution.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String? text;
