@@ -32,7 +32,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
 
     final response = await client.post(
         Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$kAPIkey'),
-      body: body,
+      body: jsonEncode(body),
         headers: headers,
     );
 
