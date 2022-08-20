@@ -5,11 +5,14 @@
 
 import 'dart:convert';
 
+import 'package:sample_app/features/authentication_feature/domain/entity/registration_entity.dart';
+
 LoginResponse loginResponseFromJson(String str) => LoginResponse.fromJson(json.decode(str));
 
 String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 
-class LoginResponse {
+// ignore: must_be_immutable
+class LoginResponse extends LoginEntity {
   LoginResponse({
     this.localId,
     this.email,
@@ -20,13 +23,14 @@ class LoginResponse {
     this.expiresIn,
   });
 
-  String? localId;
-  String? email;
-  String? displayName;
-  String ?idToken;
-  bool? registered;
-  String? refreshToken;
-  String? expiresIn;
+
+  final String? localId;
+  final String? email;
+  final String? displayName;
+  final String ?idToken;
+  final bool? registered;
+  final String? refreshToken;
+  final String? expiresIn;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
     localId: json["localId"],
