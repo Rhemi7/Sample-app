@@ -29,11 +29,11 @@ class AppRouter {
         );
       case '/sign_up':
         return MaterialPageRoute(
-          builder: (_) => const SignUpScreen(),
+          builder: (_) => SignUpScreen(),
         );
       case '/login':
         return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) => LoginScreen(),
         );
       case '/item_screen':
         return MaterialPageRoute(

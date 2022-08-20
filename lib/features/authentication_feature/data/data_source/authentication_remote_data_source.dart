@@ -23,8 +23,8 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<LoginResponse> login({required String email, required String password}) async {
 
     Map<String, dynamic> body = {
-      "email": email,
-      "password": password,
+      "email": email.toLowerCase().trim(),
+      "password": password.trim(),
       "returnSecureToken": true
     };
 
@@ -51,8 +51,8 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   @override
   Future<RegistrationResponse> signUp({required String email, required String password}) async {
     Map<String, dynamic> body = {
-      "email": email,
-      "password": password,
+      "email": email.trim(),
+      "password": password.trim(),
       "returnSecureToken": true
     };
 

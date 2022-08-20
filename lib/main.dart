@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sample_app/features/authentication_feature/presentation/screens/log_in_screen.dart';
 import 'service_locator.dart' as di;
 
 import 'package:sample_app/features/storage_feature/presentation/screens/add_item_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: _appRouter.onGenerateRoute,
-      home: const SignUpScreen(),
+      home: SignUpScreen(),
     );
   }
 }
