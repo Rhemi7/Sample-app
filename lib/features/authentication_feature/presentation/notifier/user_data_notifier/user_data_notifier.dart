@@ -16,9 +16,7 @@ class UserDataNotifier extends StateNotifier<UserDataState> {
       final result = await getUser(NoParams());
 
       result.fold((error) => state = UserDataError(message: "Data could not be retrieved"), (result) {
-        print("Gotten user data");
         state = UserDataLoaded(data: result);
-        // print('email ${result.email!}');
       });
     } catch (e) {
       state = UserDataError(message: "Login failed");

@@ -2,8 +2,6 @@ import 'package:sample_app/features/user_feature/presentation/utils/constants.da
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sample_app/features/storage_feature/data/model/friend_model.dart';
 
-import '../../../../core/error/failure.dart';
-
 abstract class StorageLocalDataSource {
 
   Future<List<FriendModel>> addToFriends(FriendModel model);

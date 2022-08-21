@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sample_app/core/usecases/usecases.dart';
-import 'package:sample_app/features/authentication_feature/presentation/provider/auth_provider.dart';
 import 'package:sample_app/features/authentication_feature/presentation/provider/user_data_provider.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/margins.dart';
 import '../../../storage_feature/presentation/provider/provider.dart';
 import '../../../user_feature/presentation/utils/constants.dart';
 import '../../data/model/user_data.dart';
-import '../notifier/authentication_notifier/authentication_state.dart';
 import '../notifier/user_data_notifier/user_data_state.dart';
 
 class ProfileScreen extends ConsumerWidget {

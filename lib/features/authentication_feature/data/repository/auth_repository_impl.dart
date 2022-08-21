@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:sample_app/core/error/failure.dart';
 import 'package:sample_app/features/authentication_feature/data/data_source/authentication_remote_data_source.dart';
 import 'package:sample_app/features/authentication_feature/data/model/registration_response.dart';
-import 'package:sample_app/features/authentication_feature/data/model/update_profile_response.dart';
 import 'package:sample_app/features/authentication_feature/data/model/user_data.dart';
 import 'package:sample_app/features/authentication_feature/domain/repository/auth_repository.dart';
 
@@ -41,7 +40,6 @@ class AuthRepositoryImpl implements AuthRepository {
         firstName: firstName,
       )
           .then((value) {
-            print("register value $value");
         return Right(value);
       });
     } on ServerException {

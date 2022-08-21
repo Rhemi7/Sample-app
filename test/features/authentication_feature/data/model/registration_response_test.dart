@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sample_app/features/authentication_feature/data/model/login_response.dart';
 import 'package:sample_app/features/authentication_feature/data/model/registration_response.dart';
 import '../../../../data/data_reader.dart';
 

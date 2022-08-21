@@ -18,7 +18,6 @@ class AuthNotifier extends StateNotifier<AuthenticationState> {
           .fold((error) => state = AuthenticationError(message: "Login failed"),
               (result) {
         state = AuthenticationLoaded(email: result.email!);
-        print('email ${result.email!}');
       });
     } catch (e) {
       state = AuthenticationError(message: "Login failed");
@@ -40,9 +39,7 @@ class AuthNotifier extends StateNotifier<AuthenticationState> {
               state = AuthenticationError(message: "Registration failed"),
           (result) async {
         state = AuthenticationLoaded(email: result.email!);
-
-        print('email ${result.email!}');
-      });
+          });
     } catch (e) {
       state = AuthenticationError(message: "Registration failed");
     }

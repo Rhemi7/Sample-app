@@ -34,7 +34,6 @@ class StorageNotifier extends StateNotifier<StorageState> {
           (error) => state = StorageError(message: "Friends cannot be loaded"),
           (result) {
         state = StorageLoaded(friends: result);
-        print("friends $result");
       });
     } catch (e) {
       state = StorageError(message: "Friends cannot be loaded");
@@ -59,7 +58,6 @@ class StorageNotifier extends StateNotifier<StorageState> {
           (error) => state = StorageError(message: "Friends cannot be loaded"),
           (result) {
         state = StorageLoaded(friends: result);
-        print("friends $result");
       });
     } catch (e) {
       state = StorageError(message: "Friends cannot be loaded");
@@ -75,7 +73,6 @@ class StorageNotifier extends StateNotifier<StorageState> {
           (error) => state = StorageError(message: "Friend cannot be deleted"),
           (result) {
         state = StorageLoaded(friends: result);
-        print("friends $result");
       });
     } catch (e) {
       state = StorageError(message: "Friend cannot be deleted");
@@ -91,7 +88,6 @@ class StorageNotifier extends StateNotifier<StorageState> {
           (error) => state = StorageError(message: "Friends cannot be loaded"),
           (result) {
         state = StorageLoaded(friends: result);
-        print("friends $result");
       });
     } catch (e) {
       state = StorageError(message: "Friends cannot be loaded");

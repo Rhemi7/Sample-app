@@ -6,7 +6,6 @@ import 'package:sample_app/core/error/failure.dart';
 import 'package:sample_app/features/authentication_feature/data/data_source/authentication_remote_data_source.dart';
 import 'package:sample_app/features/authentication_feature/data/model/login_response.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
-import 'package:matcher/matcher.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,13 +22,10 @@ void main() {
   late MockSharedPreferences mockPref;
   late AuthRemoteDatasourceImpl dataSource;
 
-  var url = Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$kAPIkey');
   var loginUrl = Uri.parse("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$kAPIkey");
 
   String email = "abc@xyz.com";
   String password = "password";
-  String firstName = "John";
-  String lastName = "Doe";
 
   Map<String, dynamic> body = {
     "email": "abc@xyz.com",

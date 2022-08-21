@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
-import '../../../../service_locator.dart';
 import '../../../storage_feature/presentation/provider/provider.dart';
 import '../../../storage_feature/presentation/widget/app_primary_button.dart';
 import '../../../storage_feature/presentation/widget/app_text_field.dart';

@@ -37,7 +37,7 @@ class AppRouter {
         );
       case '/item_screen':
         return MaterialPageRoute(
-          builder: (_) => ItemScreen(),
+          builder: (_) => const ItemScreen(),
         );
       case '/dash_board':
         return MaterialPageRoute(
