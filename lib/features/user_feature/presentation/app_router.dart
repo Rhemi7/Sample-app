@@ -6,15 +6,10 @@ import 'package:sample_app/features/storage_feature/presentation/screens/home_sc
 import 'package:sample_app/features/storage_feature/presentation/screens/item_screen.dart';
 import 'package:sample_app/features/authentication_feature/presentation/screens/log_in_screen.dart';
 import 'package:sample_app/features/authentication_feature/presentation/screens/sign_up_screen.dart';
-import 'package:sample_app/features/user_feature/presentation/splash_screen.dart';
 
 class AppRouter {
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(
-          builder: (_) => const SplashScreen(),
-        );
       case '/home':
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
