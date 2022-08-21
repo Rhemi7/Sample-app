@@ -98,7 +98,7 @@ class StorageNotifier extends StateNotifier<StorageState> {
     }
   }
 
-  Future deleteAll(int index) async {
+  Future logout() async {
     try {
       state = const StorageLoading();
       final result = await delete(NoParams());

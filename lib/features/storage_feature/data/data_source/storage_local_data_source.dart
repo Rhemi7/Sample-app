@@ -53,18 +53,19 @@ class StorageLocalDataSourceImpl implements StorageLocalDataSource {
 
   @override
   Future<List<FriendModel>> getCachedFriends() {
+    List<FriendModel> model = [];
     final jsonString = sharedPreferences.getString(cachedFriendsString);
     if (jsonString != null) {
       final List<FriendModel> friends = FriendModel.decode(jsonString);
       return Future.value(friends);
     } else {
-      throw CacheException();
+      return Future.value(model);
     }
   }
 
   @override
   Future<void> deleteAll() async {
-    sharedPreferences.clear();
+    sharedPreferences.remove(cachedFriendsString);
   }
 
   @override

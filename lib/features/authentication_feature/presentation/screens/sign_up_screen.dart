@@ -8,6 +8,7 @@ import '../../../user_feature/presentation/utils/margins.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../notifier/authentication_notifier/authentication_state.dart';
 import '../provider/auth_provider.dart';
+import '../provider/user_data_provider.dart';
 
 class SignUpScreen extends ConsumerWidget {
   TextEditingController emailController = TextEditingController();
@@ -19,6 +20,8 @@ class SignUpScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(authNotifierProvider.notifier);
     final storageProvider = ref.watch(storageNotifierProvider.notifier);
+    final userProvider = ref.watch(userDataNotifierProvider.notifier);
+
 
     return Scaffold(
       body: SafeArea(
@@ -100,6 +103,8 @@ class SignUpScreen extends ConsumerWidget {
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
+                              userProvider.getUserData();
+
                               Navigator.pushNamedAndRemoveUntil(
                                   context, kDashboard, (route) => false);
                             });
@@ -127,6 +132,8 @@ class SignUpScreen extends ConsumerWidget {
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
+                              userProvider.getUserData();
+
                               Navigator.pushNamedAndRemoveUntil(
                                   context, kDashboard, (route) => false);
                             });
@@ -154,6 +161,8 @@ class SignUpScreen extends ConsumerWidget {
                           .then((value) {
                         if (provider.currentState() is AuthenticationLoaded) {
                           storageProvider.getFriends().then((value) {
+                            userProvider.getUserData();
+
                             Navigator.pushNamedAndRemoveUntil(
                                 context, kDashboard, (route) => false);
                           });

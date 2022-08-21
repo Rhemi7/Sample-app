@@ -5,7 +5,6 @@ import 'package:mockito/mockito.dart';
 import 'package:sample_app/core/error/failure.dart';
 import 'package:sample_app/features/authentication_feature/data/data_source/authentication_remote_data_source.dart';
 import 'package:sample_app/features/authentication_feature/data/model/login_response.dart';
-import 'package:sample_app/features/authentication_feature/data/model/registration_response.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 import 'package:matcher/matcher.dart';
 import 'package:flutter_test/flutter_test.dart';

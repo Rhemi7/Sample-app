@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_app/core/usecases/usecases.dart';
 import 'package:sample_app/features/authentication_feature/presentation/provider/auth_provider.dart';
 import 'package:sample_app/features/authentication_feature/presentation/provider/user_data_provider.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/margins.dart';
+import '../../../storage_feature/presentation/provider/provider.dart';
 import '../../../user_feature/presentation/utils/constants.dart';
 import '../../data/model/user_data.dart';
 import '../notifier/authentication_notifier/authentication_state.dart';
 import '../notifier/user_data_notifier/user_data_state.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends ConsumerWidget {
+
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final storageProvider = ref.watch(storageNotifierProvider.notifier);
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -83,7 +77,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const Spacer(),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                storageProvider.logout();
+                Navigator.pushNamedAndRemoveUntil(context, kLoginScreen, (route) => false);
+              },
               title: const Text(
                 "Log out",
                 style: TextStyle(fontSize: 25),
