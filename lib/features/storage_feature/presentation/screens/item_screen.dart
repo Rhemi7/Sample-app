@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/features/storage_feature/data/model/friend_model.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/edit_item_screen.dart';
 import '../../../user_feature/presentation/utils/constants.dart';
 import '../../../user_feature/presentation/utils/margins.dart';
+import '../provider/provider.dart';
 import '../widget/app_primary_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ItemScreen extends StatefulWidget {
-  const ItemScreen({Key? key}) : super(key: key);
+class ItemScreen extends ConsumerWidget {
+  const ItemScreen({Key? key, this.friend, this.index}) : super(key: key);
+  final FriendModel? friend;
+  final int? index;
 
   @override
-  State<ItemScreen> createState() => _ItemScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.watch(storageNotifierProvider.notifier);
 
-class _ItemScreenState extends State<ItemScreen> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kColorBackground,
       appBar: AppBar(
@@ -24,9 +27,14 @@ class _ItemScreenState extends State<ItemScreen> {
             icon: const Icon(Icons.close_rounded)),
         title: const Text("Friend"),
         actions: [
-          IconButton(onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, kDashboard, (route) => false);
-          }, icon: const Icon(Icons.delete)),
+          IconButton(
+              onPressed: () async {
+                await provider.deleteFriendFromList(index!).then((value) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, kDashboard, (route) => false);
+                });
+              },
+              icon: const Icon(Icons.delete)),
         ],
       ),
       body: Padding(
@@ -36,9 +44,9 @@ class _ItemScreenState extends State<ItemScreen> {
           children: [
             Expanded(
                 child: ListView(
-              children: const [
-                YMargin(50),
-                Center(
+              children: [
+                const YMargin(50),
+                const Center(
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: kColorBlue,
@@ -49,38 +57,44 @@ class _ItemScreenState extends State<ItemScreen> {
                     ),
                   ),
                 ),
-                YMargin(30),
+                const YMargin(30),
                 ItemWidget(
                   title: "First name",
-                  value: "John",
+                  value: "${friend?.firstName}",
                 ),
-                YMargin(30),
+                const YMargin(30),
                 ItemWidget(
                   title: "Last name",
-                  value: "Doe",
+                  value: "${friend?.lastName}",
                 ),
-                YMargin(30),
+                const YMargin(30),
                 ItemWidget(
                   title: "Email address",
-                  value: "abc@xyz.com",
+                  value: "${friend?.email}",
                 ),
-                YMargin(30),
+                const YMargin(30),
                 ItemWidget(
                   title: "Phone number",
-                  value: "+447123456789",
+                  value: "${friend?.countryCode} ${friend?.phoneNumber}",
                 ),
-                YMargin(30),
+                const YMargin(30),
                 ItemWidget(
                   title: "Address",
-                  value: "...",
+                  value: "${friend?.address}",
                 ),
-                YMargin(10),
+                const YMargin(10),
               ],
             )),
             PrimaryButton(
               text: "Edit",
               onPressed: () {
-                Navigator.pushNamed(context, kEditItemScreen);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (builder) => EditItemScreen(
+                              friend: friend,
+                          index: index,
+                            )));
               },
             )
           ],

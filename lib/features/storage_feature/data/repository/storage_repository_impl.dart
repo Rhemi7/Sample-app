@@ -52,4 +52,15 @@ class StorageRepositoryImpl implements StorageRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<FriendModel>>> editFriends({required FriendModel model, required int index}) async {
+    try {
+      return storageLocalDataSource.editFriend(index: index, model: model).then((value) {
+        return Right(value);
+      });
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }

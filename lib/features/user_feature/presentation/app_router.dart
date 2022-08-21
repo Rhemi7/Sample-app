@@ -21,11 +21,11 @@ class AppRouter {
         );
       case '/add_item':
         return MaterialPageRoute(
-          builder: (_) => const AddItemScreen(),
+          builder: (_) => AddItemScreen(),
         );
       case '/edit_item':
         return MaterialPageRoute(
-          builder: (_) => const EditItemScreen(),
+          builder: (_) => EditItemScreen(),
         );
       case '/sign_up':
         return MaterialPageRoute(
@@ -37,7 +37,7 @@ class AppRouter {
         );
       case '/item_screen':
         return MaterialPageRoute(
-          builder: (_) => const ItemScreen(),
+          builder: (_) => ItemScreen(),
         );
       case '/dash_board':
         return MaterialPageRoute(

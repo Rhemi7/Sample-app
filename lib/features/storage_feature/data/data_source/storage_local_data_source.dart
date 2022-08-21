@@ -10,6 +10,8 @@ abstract class StorageLocalDataSource {
 
   Future<List<FriendModel>> getCachedFriends();
 
+  Future<List<FriendModel>> editFriend({required FriendModel model, required int index});
+
   Future<List<FriendModel>> deleteFriend(int index);
 
   Future<void> deleteAll();
@@ -63,6 +65,16 @@ class StorageLocalDataSourceImpl implements StorageLocalDataSource {
   @override
   Future<void> deleteAll() async {
     sharedPreferences.clear();
+  }
+
+  @override
+  Future<List<FriendModel>> editFriend({required FriendModel model, required int index}) {
+    final jsonString = sharedPreferences.getString(cachedFriendsString);
+      final List<FriendModel> friends = FriendModel.decode(jsonString!);
+      friends[index] = model;
+      final String encodedFriends = FriendModel.encode(friends);
+      sharedPreferences.setString(cachedFriendsString, encodedFriends);
+      return Future.value(friends);
   }
 
 

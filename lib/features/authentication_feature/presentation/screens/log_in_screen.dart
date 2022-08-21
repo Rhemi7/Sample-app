@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_state.dart';
 import 'package:sample_app/features/authentication_feature/presentation/provider/provider.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
+import '../../../storage_feature/presentation/provider/provider.dart';
 import '../../../storage_feature/presentation/widget/app_primary_button.dart';
 import '../../../storage_feature/presentation/widget/app_text_field.dart';
 import '../../../user_feature/presentation/utils/margins.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(authNotifierProvider.notifier);
+    final storageProvider = ref.watch(storageNotifierProvider.notifier);
 
     return Scaffold(
       body: SafeArea(
@@ -43,6 +45,23 @@ class LoginScreen extends ConsumerWidget {
                 onChanged: (String value) {},
               ),
               const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? "),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, kSignUpScreen);
+                    },
+                    child:
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Sign up"),
+                    ),
+                  )
+                ],
+              ),
+              const YMargin(10),
               Consumer(
                 builder: (BuildContext context, WidgetRef ref, Widget? child) {
                   final authState = ref.watch(authNotifierProvider);
@@ -62,8 +81,10 @@ class LoginScreen extends ConsumerWidget {
                                 password: passwordController.text)
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, kDashboard, (route) => false);
+                            storageProvider.getFriends().then((value) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, kDashboard, (route) => false);
+                            });
                           }
                           else if (provider.currentState()
                               is AuthenticationError) {
@@ -86,8 +107,10 @@ class LoginScreen extends ConsumerWidget {
                                 password: passwordController.text)
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, kDashboard, (route) => false);
+                            storageProvider.getFriends().then((value) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, kDashboard, (route) => false);
+                            });
                           } else if (provider.currentState()
                               is AuthenticationError) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -109,8 +132,10 @@ class LoginScreen extends ConsumerWidget {
                               password: passwordController.text)
                           .then((value) {
                         if (provider.currentState() is AuthenticationLoaded) {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, kDashboard, (route) => false);
+                          storageProvider.getFriends().then((value) {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, kDashboard, (route) => false);
+                          });
                         } else if (provider.currentState()
                             is AuthenticationError) {
                           ScaffoldMessenger.of(context).showSnackBar(

@@ -6,6 +6,7 @@ import '../../../../core/error/failure.dart';
 abstract class StorageRepository {
 
   Future<Either<Failure, List<FriendModel>>> addToFriends(FriendModel model);
+  Future<Either<Failure, List<FriendModel>>> editFriends({required FriendModel model, required int index});
   Future<Either<Failure, List<FriendModel>>> deleteFriend(int index);
   Future<Either<Failure, List<FriendModel>>> getCachedFriends();
   Future<Either<Failure, void>> delete();

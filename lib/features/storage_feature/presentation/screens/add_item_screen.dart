@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/features/storage_feature/data/model/friend_model.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/margins.dart';
+import '../provider/provider.dart';
 import '../widget/app_primary_button.dart';
 import '../widget/app_text_field.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddItemScreen extends StatefulWidget {
-  const AddItemScreen({Key? key}) : super(key: key);
+class AddItemScreen extends ConsumerWidget {
 
-  @override
-  State<AddItemScreen> createState() => _AddItemScreenState();
-}
-
-class _AddItemScreenState extends State<AddItemScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -20,7 +17,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
   TextEditingController phoneNumberController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.watch(storageNotifierProvider.notifier);
+
     return Scaffold(
       backgroundColor: kColorBackground,
       appBar: AppBar(
@@ -102,8 +101,19 @@ class _AddItemScreenState extends State<AddItemScreen> {
             // Spacer(),
             PrimaryButton(
               text: "Add to friends",
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, kDashboard, (route) => false);
+              onPressed: () async {
+                await provider.addNewFriend(FriendModel(
+                  firstName: firstNameController.text,
+                  lastName: lastNameController.text,
+                  email: emailController.text,
+                  address: addressController.text,
+                  countryCode: countryCodeController.text,
+                  phoneNumber: phoneNumberController.text
+                )).then((value) {
+                  Navigator.pushNamedAndRemoveUntil(context, kDashboard, (route) => false);
+
+                });
+
               },
             )
           ],

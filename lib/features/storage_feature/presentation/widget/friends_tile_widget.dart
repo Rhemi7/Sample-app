@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/features/storage_feature/data/model/friend_model.dart';
+import 'package:sample_app/features/storage_feature/presentation/screens/item_screen.dart';
 import '../../../user_feature/presentation/utils/constants.dart';
 
 class FriendsTileWidget extends StatelessWidget {
-  final String firstName;
-  final String lastName;
-  final String countryCode;
-  final String phoneNumber;
+  final FriendModel friend;
+  final int index;
 
   const FriendsTileWidget({
     Key? key,
-    required this.countryCode,
-    required this.firstName,
-    required this.lastName,
-    required this.phoneNumber
+    required this.friend,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -20,13 +18,13 @@ class FriendsTileWidget extends StatelessWidget {
     return Card(
       child: ListTile(
         onTap: () {
-          Navigator.pushNamed(context, kItemScreen);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ItemScreen(friend: friend, index: index)));
         },
         leading: const CircleAvatar(
             backgroundColor: kColorBlue,
             child: Icon(Icons.person, color: kColorWhite,)),
-        title: Text("$firstName $lastName"),
-        subtitle: Text("$countryCode $phoneNumber"),
+        title: Text("${friend.firstName} ${friend.lastName}"),
+        subtitle: Text("${friend.countryCode} ${friend.phoneNumber}"),
         trailing: const Icon(Icons.arrow_forward_ios_rounded, color: kColorBlue,),
       ),
     );
