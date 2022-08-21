@@ -1,0 +1,26 @@
+[
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "abc@xyz.com",
+    "address": "13 Brick Avenue",
+    "country_code": "+234",
+    "phone_number": "25537748"
+  },
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "abc@xyz.com",
+    "address": "13 Brick Avenue",
+    "country_code": "+234",
+    "phone_number": "25537748"
+  },
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "abc@xyz.com",
+    "address": "13 Brick Avenue",
+    "country_code": "+234",
+    "phone_number": "25537748"
+  }
+]

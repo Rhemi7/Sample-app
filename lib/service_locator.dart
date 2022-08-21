@@ -26,7 +26,7 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
 
-  sl.registerLazySingleton<AuthRemoteDatasource>(() => AuthRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<AuthRemoteDatasource>(() => AuthRemoteDatasourceImpl(sl(), sl()));
 
   sl.registerLazySingleton<Login>(() => Login(sl()));
 

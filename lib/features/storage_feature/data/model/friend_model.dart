@@ -4,8 +4,10 @@
 
 import 'dart:convert';
 
-class FriendModel {
-  FriendModel({
+import 'package:sample_app/features/storage_feature/domain/entity/friend_entity.dart';
+
+class FriendModel extends FriendEntity{
+ const FriendModel({
     this.firstName,
     this.lastName,
     this.email,
@@ -14,12 +16,12 @@ class FriendModel {
     this.phoneNumber,
   });
 
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? address;
-  String? countryCode;
-  String? phoneNumber;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? address;
+  final String? countryCode;
+  final String? phoneNumber;
 
   factory FriendModel.fromJson(Map<String, dynamic> json) => FriendModel(
     firstName: json["first_name"],

@@ -20,4 +20,5 @@ const kDashboard = "/dash_board";
 
 
 const cachedFriendsString = "cachedFriendsString";
+const refreshTokenString = "refreshTokenString";
 
