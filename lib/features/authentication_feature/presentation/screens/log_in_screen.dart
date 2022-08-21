@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_state.dart';
-import 'package:sample_app/features/authentication_feature/presentation/provider/provider.dart';
+import 'package:sample_app/features/authentication_feature/presentation/provider/auth_provider.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 import '../../../storage_feature/presentation/provider/provider.dart';
 import '../../../storage_feature/presentation/widget/app_primary_button.dart';
 import '../../../storage_feature/presentation/widget/app_text_field.dart';
 import '../../../user_feature/presentation/utils/margins.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../notifier/authentication_notifier/authentication_state.dart';
+import '../provider/user_data_provider.dart';
 
 class LoginScreen extends ConsumerWidget {
   TextEditingController emailController = TextEditingController();
@@ -16,6 +18,8 @@ class LoginScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(authNotifierProvider.notifier);
     final storageProvider = ref.watch(storageNotifierProvider.notifier);
+    final userProvider = ref.watch(userDataNotifierProvider.notifier);
+
 
     return Scaffold(
       body: SafeArea(
@@ -82,6 +86,7 @@ class LoginScreen extends ConsumerWidget {
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
+                              userProvider.getUserData();
                               Navigator.pushNamedAndRemoveUntil(
                                   context, kDashboard, (route) => false);
                             });
@@ -108,6 +113,8 @@ class LoginScreen extends ConsumerWidget {
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
+                              userProvider.getUserData();
+
                               Navigator.pushNamedAndRemoveUntil(
                                   context, kDashboard, (route) => false);
                             });
@@ -133,6 +140,8 @@ class LoginScreen extends ConsumerWidget {
                           .then((value) {
                         if (provider.currentState() is AuthenticationLoaded) {
                           storageProvider.getFriends().then((value) {
+                            userProvider.getUserData();
+
                             Navigator.pushNamedAndRemoveUntil(
                                 context, kDashboard, (route) => false);
                           });

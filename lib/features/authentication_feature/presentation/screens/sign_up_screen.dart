@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/features/authentication_feature/data/data_source/authentication_remote_data_source.dart';
-import 'package:sample_app/features/storage_feature/presentation/screens/dashboard.dart';
 import 'package:sample_app/features/user_feature/presentation/utils/constants.dart';
 import '../../../../service_locator.dart';
 import '../../../storage_feature/presentation/provider/provider.dart';
@@ -8,21 +6,19 @@ import '../../../storage_feature/presentation/widget/app_primary_button.dart';
 import '../../../storage_feature/presentation/widget/app_text_field.dart';
 import '../../../user_feature/presentation/utils/margins.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../notifier/authentication_state.dart';
-import '../provider/provider.dart';
-
-
+import '../notifier/authentication_notifier/authentication_state.dart';
+import '../provider/auth_provider.dart';
 
 class SignUpScreen extends ConsumerWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(authNotifierProvider.notifier);
     final storageProvider = ref.watch(storageNotifierProvider.notifier);
-
 
     return Scaffold(
       body: SafeArea(
@@ -40,7 +36,7 @@ class SignUpScreen extends ConsumerWidget {
                 hintText: "Email",
                 controller: emailController,
                 contentPadding:
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 onChanged: (String value) {},
               ),
               const YMargin(15),
@@ -48,21 +44,35 @@ class SignUpScreen extends ConsumerWidget {
                 hintText: "Password",
                 controller: passwordController,
                 contentPadding:
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                onChanged: (String value) {},
+              ),
+              const YMargin(15),
+              AppTextField(
+                hintText: "First name",
+                controller: firstNameController,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                onChanged: (String value) {},
+              ),
+              const YMargin(15),
+              AppTextField(
+                hintText: "Last name",
+                controller: lastNameController,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 onChanged: (String value) {},
               ),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
                   const Text("Already have an account?"),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, kLoginScreen);
                     },
-                    child:
-                    const Padding(
+                    child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text("Log in"),
                     ),
@@ -75,9 +85,7 @@ class SignUpScreen extends ConsumerWidget {
                   final authState = ref.watch(authNotifierProvider);
                   if (authState is AuthenticationLoading) {
                     return PrimaryButton(
-                      onPressed: () {
-
-                      },
+                      onPressed: () {},
                       text: "Loading...",
                     );
                   } else if (authState is AuthenticationLoaded) {
@@ -85,17 +93,18 @@ class SignUpScreen extends ConsumerWidget {
                       onPressed: () async {
                         await provider
                             .registerUser(
-                            email: emailController.text,
-                            password: passwordController.text)
+                                email: emailController.text,
+                                password: passwordController.text,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text)
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, kDashboard, (route) => false);
                             });
-                          }
-                          else if (provider.currentState()
-                          is AuthenticationError) {
+                          } else if (provider.currentState()
+                              is AuthenticationError) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text("Registration failed"),
@@ -111,8 +120,10 @@ class SignUpScreen extends ConsumerWidget {
                       onPressed: () async {
                         await provider
                             .registerUser(
-                            email: emailController.text,
-                            password: passwordController.text)
+                                email: emailController.text,
+                                password: passwordController.text,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text)
                             .then((value) {
                           if (provider.currentState() is AuthenticationLoaded) {
                             storageProvider.getFriends().then((value) {
@@ -120,7 +131,7 @@ class SignUpScreen extends ConsumerWidget {
                                   context, kDashboard, (route) => false);
                             });
                           } else if (provider.currentState()
-                          is AuthenticationError) {
+                              is AuthenticationError) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text("Registration failed"),
@@ -136,8 +147,10 @@ class SignUpScreen extends ConsumerWidget {
                     onPressed: () async {
                       await provider
                           .registerUser(
-                          email: emailController.text,
-                          password: passwordController.text)
+                              email: emailController.text,
+                              password: passwordController.text,
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text)
                           .then((value) {
                         if (provider.currentState() is AuthenticationLoaded) {
                           storageProvider.getFriends().then((value) {
@@ -145,7 +158,7 @@ class SignUpScreen extends ConsumerWidget {
                                 context, kDashboard, (route) => false);
                           });
                         } else if (provider.currentState()
-                        is AuthenticationError) {
+                            is AuthenticationError) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("Registration failed"),
@@ -165,4 +178,3 @@ class SignUpScreen extends ConsumerWidget {
     );
   }
 }
-

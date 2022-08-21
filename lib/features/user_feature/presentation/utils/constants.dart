@@ -18,7 +18,8 @@ const kItemScreen = '/item_screen';
 const kEditItemScreen = "/edit_item";
 const kDashboard = "/dash_board";
 
-
+//Shared preferences keys
 const cachedFriendsString = "cachedFriendsString";
 const refreshTokenString = "refreshTokenString";
+const idTokenString = "idTokenString";
 

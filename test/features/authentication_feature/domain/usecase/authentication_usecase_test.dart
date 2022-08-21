@@ -16,6 +16,8 @@ void main() {
 
   String email = "abc@xyz.com";
   String password = "password";
+  String firstName = "John";
+  String lastName = "Doe";
 
   final testLoginModel = LoginResponse(
       localId: "ZY1rJK0eYLg...",
@@ -60,12 +62,12 @@ void main() {
         repository = MockAuthenticationRepository();
         registerUsecase = Register(repository);
         //stub the method
-        when(repository.signUp(email: email, password: password)).thenAnswer((_) async => Right(testRegistrationModel));
+        when(repository.signUp(email: email, password: password, firstName: firstName, lastName: lastName)).thenAnswer((_) async => Right(testRegistrationModel));
         // act
-        final result = await registerUsecase(UserParams(email: email, password: password));
+        final result = await registerUsecase(UserParams(email: email, password: password, firstName: firstName, lastName: lastName));
         // assert
         expect(result, Right(testRegistrationModel));
-        verify(repository.signUp(email: email, password: password));
+        verify(repository.signUp(email: email, password: password, firstName: firstName, lastName: lastName));
         verifyNoMoreInteractions(repository);
       },
     );

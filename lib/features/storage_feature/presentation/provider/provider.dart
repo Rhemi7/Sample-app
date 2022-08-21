@@ -1,7 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sample_app/features/authentication_feature/domain/usecase/authentication_usecase.dart';
-import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_notifier.dart';
-import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_state.dart';
 import 'package:sample_app/features/storage_feature/domain/usecase/add_friend.dart';
 import 'package:sample_app/features/storage_feature/domain/usecase/delete_friend.dart';
 import 'package:sample_app/features/storage_feature/domain/usecase/edit_friend.dart';

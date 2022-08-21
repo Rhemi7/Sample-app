@@ -5,7 +5,8 @@ import 'package:sample_app/features/authentication_feature/data/data_source/auth
 import 'package:sample_app/features/authentication_feature/data/repository/auth_repository_impl.dart';
 import 'package:sample_app/features/authentication_feature/domain/repository/auth_repository.dart';
 import 'package:sample_app/features/authentication_feature/domain/usecase/authentication_usecase.dart';
-import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_notifier.dart';
+import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_notifier/authentication_notifier.dart';
+import 'package:sample_app/features/authentication_feature/presentation/notifier/user_data_notifier/user_data_notifier.dart';
 import 'package:sample_app/features/storage_feature/data/data_source/storage_local_data_source.dart';
 import 'package:sample_app/features/storage_feature/data/repository/storage_repository_impl.dart';
 import 'package:sample_app/features/storage_feature/domain/repository/storage_repository.dart';
@@ -22,6 +23,8 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton(() => AuthNotifier(sl(), sl()));
 
+  sl.registerLazySingleton(() => UserDataNotifier(sl()));
+
   sl.registerLazySingleton(() => http.Client());
 
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
@@ -31,6 +34,8 @@ Future<void> setUpLocator() async {
   sl.registerLazySingleton<Login>(() => Login(sl()));
 
   sl.registerLazySingleton<Register>(() => Register(sl()));
+
+  sl.registerLazySingleton<GetUser>(() => GetUser(sl()));
 
   sl.registerLazySingleton(() => StorageNotifier(sl(), sl(), sl(), sl(), sl()));
 

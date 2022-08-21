@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sample_app/features/authentication_feature/presentation/notifier/authentication_state.dart';
-
-import '../../domain/usecase/authentication_usecase.dart';
+import '../../../domain/usecase/authentication_usecase.dart';
+import 'authentication_state.dart';
 
 class AuthNotifier extends StateNotifier<AuthenticationState> {
   Login login;
@@ -25,19 +24,22 @@ class AuthNotifier extends StateNotifier<AuthenticationState> {
     }
   }
 
-  Future<void> registerUser({required String email, required String password}) async {
+  Future<void> registerUser({required String email, required String password, required String firstName, required String lastName}) async {
     try {
       state = const AuthenticationLoading();
       final result = await register(UserParams(email: email, password: password));
 
-      result.fold((error) => state = AuthenticationError(message: "Registration failed"), (result) {
-        state = AuthenticationLoaded(email: result.email!);
+      result.fold((error) => state = AuthenticationError(message: "Registration failed"), (result) async {
+
+          state = AuthenticationLoaded(email: result.email!);
+
         print('email ${result.email!}');
       });
     } catch (e) {
-      state = AuthenticationError(message: "Login failed");
+      state = AuthenticationError(message: "Registration failed");
     }
   }
+
 
   AuthenticationState currentState() {
     return state;

@@ -63,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(storageState.message.toString()),
                       );
                     }
-                    return Container();
+                    return const Center(
+                      child: Icon(Icons.person_add_disabled, size: 30,),
+                    );
                   },
                 )
               ],
